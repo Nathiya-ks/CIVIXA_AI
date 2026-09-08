@@ -1,1 +1,501 @@
+* {
 
+    box-sizing: border-box;
+
+    margin: 0;
+
+    padding: 0;
+
+}
+
+
+body {
+
+    font-family: Arial, sans-serif;
+
+    background: #f5f7fb;
+
+    color: #172033;
+
+}
+
+
+/* ================= NAVBAR ================= */
+
+nav {
+
+    height: 75px;
+
+    padding: 0 7%;
+
+    background: white;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    border-bottom: 1px solid #eeeeee;
+
+}
+
+
+.logo {
+
+    font-size: 27px;
+
+    font-weight: bold;
+
+}
+
+
+.logo span {
+
+    font-weight: normal;
+
+}
+
+
+.nav-links {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 25px;
+
+}
+
+
+.nav-links a {
+
+    text-decoration: none;
+
+    color: #172033;
+
+    font-weight: 500;
+
+}
+
+
+.login-btn {
+
+    border: none;
+
+    padding: 10px 22px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+}
+
+
+/* ================= HERO ================= */
+
+.hero {
+
+    min-height: 620px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    padding: 70px 20px;
+
+}
+
+
+.hero-content {
+
+    max-width: 900px;
+
+}
+
+
+.badge {
+
+    display: inline-block;
+
+    padding: 9px 18px;
+
+    border-radius: 20px;
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+    background: white;
+
+    border: 1px solid #dddddd;
+
+}
+
+
+h1 {
+
+    font-size: 55px;
+
+    margin: 25px 0 15px;
+
+    line-height: 1.1;
+
+}
+
+
+h1 span {
+
+    display: block;
+
+}
+
+
+.subtitle {
+
+    max-width: 720px;
+
+    margin: auto;
+
+    font-size: 18px;
+
+    line-height: 1.7;
+
+}
+
+
+/* ================= SEARCH ================= */
+
+.search-box {
+
+    background: white;
+
+    max-width: 750px;
+
+    margin: 35px auto 20px;
+
+    padding: 20px;
+
+    border-radius: 18px;
+
+    box-shadow: 0 10px 35px rgba(0,0,0,0.08);
+
+}
+
+
+textarea {
+
+    width: 100%;
+
+    height: 100px;
+
+    border: none;
+
+    outline: none;
+
+    resize: none;
+
+    font-size: 17px;
+
+    font-family: Arial;
+
+    padding: 10px;
+
+}
+
+
+.button-area {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 12px;
+
+}
+
+
+.search-btn,
+.voice-btn {
+
+    border: none;
+
+    padding: 13px 25px;
+
+    border-radius: 9px;
+
+    cursor: pointer;
+
+    font-size: 16px;
+
+}
+
+
+.search-btn {
+
+    font-weight: bold;
+
+}
+
+
+.voice-btn {
+
+    background: #eeeeee;
+
+}
+
+
+/* ================= EXAMPLES ================= */
+
+.examples {
+
+    margin-top: 20px;
+
+}
+
+
+.examples p {
+
+    margin-bottom: 10px;
+
+}
+
+
+.examples button {
+
+    padding: 10px 16px;
+
+    margin: 5px;
+
+    border-radius: 20px;
+
+    border: 1px solid #dddddd;
+
+    background: white;
+
+    cursor: pointer;
+
+}
+
+
+/* ================= RESULT ================= */
+
+#result-section {
+
+    max-width: 900px;
+
+    margin: auto;
+
+    padding: 20px;
+
+}
+
+
+.card {
+
+    background: white;
+
+    padding: 30px;
+
+    border-radius: 18px;
+
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+
+    margin-bottom: 40px;
+
+}
+
+
+.card h2 {
+
+    margin-bottom: 15px;
+
+}
+
+
+.card h3 {
+
+    margin-top: 22px;
+
+    margin-bottom: 8px;
+
+}
+
+
+.card p {
+
+    line-height: 1.6;
+
+}
+
+
+.card li {
+
+    margin: 9px 0;
+
+}
+
+
+.official-link {
+
+    display: inline-block;
+
+    margin-top: 20px;
+
+    padding: 12px 20px;
+
+    border-radius: 8px;
+
+    text-decoration: none;
+
+    background: #172033;
+
+    color: white;
+
+}
+
+
+/* ================= FEATURES ================= */
+
+.features {
+
+    padding: 70px 7%;
+
+    text-align: center;
+
+    background: white;
+
+}
+
+
+.features h2 {
+
+    font-size: 35px;
+
+    margin-bottom: 40px;
+
+}
+
+
+.feature-container {
+
+    display: grid;
+
+    grid-template-columns:
+
+        repeat(4, 1fr);
+
+    gap: 20px;
+
+}
+
+
+.feature-card {
+
+    padding: 30px 20px;
+
+    border: 1px solid #eeeeee;
+
+    border-radius: 15px;
+
+    background: #f9fafc;
+
+}
+
+
+.feature-card .icon {
+
+    font-size: 40px;
+
+    margin-bottom: 15px;
+
+}
+
+
+.feature-card h3 {
+
+    margin-bottom: 10px;
+
+}
+
+
+.feature-card p {
+
+    line-height: 1.5;
+
+}
+
+
+/* ================= ABOUT ================= */
+
+.about {
+
+    text-align: center;
+
+    padding: 70px 20px;
+
+}
+
+
+.about h2 {
+
+    font-size: 35px;
+
+    margin-bottom: 20px;
+
+}
+
+
+.about p {
+
+    margin: 10px;
+
+    line-height: 1.6;
+
+}
+
+
+/* ================= FOOTER ================= */
+
+footer {
+
+    text-align: center;
+
+    padding: 25px;
+
+    background: #172033;
+
+    color: white;
+
+}
+
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 800px) {
+
+    .nav-links {
+
+        display: none;
+
+    }
+
+
+    h1 {
+
+        font-size: 40px;
+
+    }
+
+
+    .feature-container {
+
+        grid-template-columns: 1fr;
+
+    }
+
+}
