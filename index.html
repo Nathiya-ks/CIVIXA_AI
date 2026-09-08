@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>CIVIXA AI</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+    <nav>
+
+        <div class="logo">
+            🤖 CIVIXA <span>AI</span>
+        </div>
+
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="#services">Services</a>
+            <a href="#about">About</a>
+            <button class="login-btn">Login</button>
+        </div>
+
+    </nav>
+
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <div class="badge">
+                🇮🇳 SMART PUBLIC SERVICE ASSISTANT
+            </div>
+
+            <h1>
+                Find the Right
+                <span>Government Service</span>
+            </h1>
+
+            <p class="subtitle">
+                Tell CIVIXA AI what you need.
+                Get personalized government service
+                recommendations and application guidance.
+            </p>
+
+
+            <div class="search-box">
+
+                <textarea
+                    id="query"
+                    placeholder="Example: I am a farmer and need financial assistance"></textarea>
+
+
+                <div class="button-area">
+
+                    <button
+                        type="button"
+                        class="search-btn"
+                        onclick="searchService()">
+
+                        🔍 Find Service
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="voice-btn"
+                        onclick="startVoice()">
+
+                        🎤 Voice
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="examples">
+
+                <p>Try asking:</p>
+
+                <button
+                    type="button"
+                    onclick="setQuery('I am a farmer and need financial assistance')">
+
+                    🌾 Farmer Assistance
+
+                </button>
+
+                <button
+                    type="button"
+                    onclick="setQuery('I am a student looking for scholarship')">
+
+                    🎓 Student Scholarship
+
+                </button>
+
+                <button
+                    type="button"
+                    onclick="setQuery('I need health assistance')">
+
+                    🏥 Health Assistance
+
+                </button>
+
+                <button
+                    type="button"
+                    onclick="setQuery('I need Aadhaar update')">
+
+                    🪪 Aadhaar Service
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section id="result-section">
+
+        <div id="result"></div>
+
+    </section>
+
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script>
+
+        function setQuery(text) {
+
+            document.getElementById("query").value = text;
+
+        }
+
+
+        async function searchService() {
+
+            console.log("Find Service clicked");
+
+
+            const query =
+                document.getElementById("query").value.trim();
+
+
+            if (query === "") {
+
+                alert("Please enter your requirement.");
+
+                return;
+
+            }
+
+
+            document.getElementById("result").innerHTML = `
+
+                <div class="card">
+
+                    <h2>🤖 CIVIXA AI is thinking...</h2>
+
+                    <p>
+                        Finding the best government service
+                        for you...
+                    </p>
+
+                </div>
+
+            `;
+
+
+            try {
+
+                const response = await fetch(
+                    "/api/search",
+                    {
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+
+                        body: JSON.stringify({
+                            query: query
+                        })
+                    }
+                );
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        "Server error: " + response.status
+                    );
+
+                }
+
+
+                const data = await response.json();
+
+
+                let stepsHTML = "";
+
+
+                data.steps.forEach(function(step) {
+
+                    stepsHTML +=
+                        "<li>" + step + "</li>";
+
+                });
+
+
+                document.getElementById("result").innerHTML = `
+
+                    <div class="card">
+
+                        <h2>🎯 ${data.name}</h2>
+
+                        <p>
+                            ${data.description}
+                        </p>
+
+
+                        <h3>✅ Eligibility</h3>
+
+                        <p>
+                            ${data.eligibility}
+                        </p>
+
+
+                        <h3>📄 Documents Required</h3>
+
+                        <p>
+                            ${data.documents}
+                        </p>
+
+
+                        <h3>📋 Application Steps</h3>
+
+                        <ol>
+                            ${stepsHTML}
+                        </ol>
+
+
+                        <a
+                            href="${data.link}"
+                            target="_blank"
+                            class="official-link">
+
+                            🔗 Visit Official Website
+
+                        </a>
+
+                    </div>
+
+                `;
+
+
+                document
+                    .getElementById("result-section")
+                    .scrollIntoView({
+                        behavior: "smooth"
+                    });
+
+            }
+
+
+            catch (error) {
+
+                console.error(error);
+
+
+                document.getElementById("result").innerHTML = `
+
+                    <div class="card">
+
+                        <h2>⚠️ Error</h2>
+
+                        <p>
+                            ${error.message}
+                        </p>
+
+                    </div>
+
+                `;
+
+            }
+
+        }
+
+
+        function startVoice() {
+
+            const SpeechRecognition =
+                window.SpeechRecognition ||
+                window.webkitSpeechRecognition;
+
+
+            if (!SpeechRecognition) {
+
+                alert(
+                    "Voice recognition is not supported in this browser."
+                );
+
+                return;
+
+            }
+
+
+            const recognition =
+                new SpeechRecognition();
+
+
+            recognition.lang = "en-IN";
+
+
+            recognition.start();
+
+
+            recognition.onresult = function(event) {
+
+                const text =
+                    event.results[0][0].transcript;
+
+
+                document.getElementById("query").value = text;
+
+            };
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>
